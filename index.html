@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/x-icon" href="./assets/favicon.jpg">
+    <title>Log In</title>
+</head>
+<body>
+    <!-- Login Section -->
+    <section class="container">
+        <div class="login-container">
+            <div class="circle circle-one"></div>
+            <div class="form-container">
+                <img src="./assets/illustration.png" alt="illustration" class="illustration" />
+                <h1 class="opacity">LOGIN</h1>
+                <form id="loginForm" onsubmit="validateLogin(event)">
+                    <input type="text" placeholder="USERNAME" id="username" required />
+                    <input type="password" placeholder="PASSWORD" id="password" required />
+                    <button type="submit" class="opacity">SUBMIT</button>
+                </form>
+
+                
+            </div>
+            <div class="circle circle-two"></div>
+        </div>
+        <div class="theme-btn-container"></div>
+    </section>
+
+    <script>
+
+        // login page
+
+const themes = [
+    {
+        background: "#1A1A2E",
+        color: "#FFFFFF",
+        primaryColor: "#0F3460"
+    },
+    {
+        background: "#461220",
+        color: "#FFFFFF",
+        primaryColor: "#E94560"
+    },
+    {
+        background: "#192A51",
+        color: "#FFFFFF",
+        primaryColor: "#967AA1"
+    },
+    {
+        background: "#F7B267",
+        color: "#000000",
+        primaryColor: "#F4845F"
+    },
+    {
+        background: "#F25F5C",
+        color: "#000000",
+        primaryColor: "#642B36"
+    },
+    {
+        background: "#231F20",
+        color: "#FFF",
+        primaryColor: "#BB4430"
+    }
+];
+
+const setTheme = (theme) => {
+    const root = document.querySelector(":root");
+    root.style.setProperty("--background", theme.background);
+    root.style.setProperty("--color", theme.color);
+    root.style.setProperty("--primary-color", theme.primaryColor);
+    root.style.setProperty("--glass-color", theme.glassColor);
+};
+
+const displayThemeButtons = () => {
+    const btnContainer = document.querySelector(".theme-btn-container");
+    themes.forEach((theme) => {
+        const div = document.createElement("div");
+        div.className = "theme-btn";
+        div.style.cssText = `background: ${theme.background}; width: 25px; height: 25px`;
+        btnContainer.appendChild(div);
+        div.addEventListener("click", () => setTheme(theme));
+    });
+};
+
+displayThemeButtons();
+
+document.addEventListener('DOMContentLoaded', () => {
+    // Check if the user is already logged in
+    if (window.location.pathname.endsWith('../index.html') && sessionStorage.getItem('loggedIn') === 'true') {
+        window.location.href = './invoice/invoice.html';
+    }
+});
+
+function validateLogin(event) {
+    event.preventDefault(); // Prevent form submission
+
+    const username = document.getElementById('username').value;
+    const password = document.getElementById('password').value;
+
+    // Example validation (replace this with your actual login validation logic)
+    if (username === 'user' && password === 'pass') {
+        // Set a session flag to indicate the user is logged in
+        sessionStorage.setItem('loggedIn', 'true');
+        // Redirect to form.html after successful login
+        window.location.href = './invoice/invoice.html';
+    } else {
+        alert('Invalid username or password. Please try again.');
+    }
+}
+
+function logout() {
+    // Clear the session flag
+    sessionStorage.removeItem('loggedIn');
+    // Redirect to login page
+    window.location.href = '../index.html';
+}
+
+
+
+    </script>
+   
+</body>
+</html>
