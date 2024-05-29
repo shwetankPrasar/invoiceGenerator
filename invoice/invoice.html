@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invoice Generator</title>
+    <link rel="stylesheet" href="invoicecss.css">
+    <link rel="icon" type="image/x-icon" href="../assets/favicon.jpg">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+</head>
+<body>
+    <div id="root" class="container">
+        <form id="invoiceForm">
+            <h2>Biller Information</h2>
+            <label for="billerName">Name:</label>
+            <input type="text" id="billerName" required>
+            <label for="billerAddress">Address:</label>
+            <input type="text" id="billerAddress" required>
+            <label for="billerPhone">Phone:</label>
+            <input type="text" id="billerPhone" required>
+            <label for="billerEmail">Email:</label>
+            <input type="email" id="billerEmail" required>
+
+            <h2>Item Details</h2>
+            <button type="button" onclick="addItem()" class="button">Add Item</button>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Item</th>
+                        <th>Description</th>
+                        <th>Quantity</th>
+                        <th>Unit Price</th>
+                        <th>Total</th>
+                    </tr>
+                </thead>
+                <tbody id="items"></tbody>
+            </table>
+
+            <div class="button-container">
+                <button type="button" onclick="generateInvoice()" class="button">Generate Invoice</button>
+            </div>
+        </form>
+    </div>
+
+    <div id="invoice" class="invoice hidden">
+        <div class="header">
+            <div class="header-left">
+                <img id="logo" src="../assets/logo.jpg" alt="Company Logo">
+                <h2 id="compName">Vikram Auto Spares</h2>
+            </div>
+            <div class="header-right">
+                <p>GST No: xxxxxxxxxxx <span id="compGst"></span></p>
+                <p>Address: Purab Bazar, Saharsa, Bihar, 852201 <span id="compAddress"></span></p>
+                <p>Phone: 9304070473 <span id="compPhone"></span></p>
+                <p>Email: xxxxxxxxxxx@gmail.com <span id="compEmail"></span></p>
+            </div>
+        </div>
+        <h2>Tax Invoice</h2>
+        <div class="biller-info">
+            <div class="biller-left">
+                <p>Name: <span id="billName"></span></p>
+                <p>Address: <span id="billAddress"></span></p>
+                <p>Phone: <span id="billPhone"></span></p>
+                <p>Email: <span id="billEmail"></span></p>
+            </div>
+            <div class="right">
+                <p>Invoice No: <span id="invoiceNo"></span></p>
+                <p>Date: <span id="invoiceDate"></span></p>
+            </div>
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Item</th>
+                    <th>Description</th>
+                    <th>Quantity</th>
+                    <th>Unit Price</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+            <tbody id="invoiceItems"></tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="4">Net Total (excl. GST)</td>
+                    <td id="netTotal"></td>
+                </tr>
+                <tr>
+                    <td colspan="4">GST 18%</td>
+                    <td id="gstAmount"></td>
+                </tr>
+                <tr>
+                    <td colspan="4">Total (incl. GST)</td>
+                    <td id="totalAmount"></td>
+                </tr>
+                <!-- <tr>
+                    <td>Amount in Words</td>
+                    <td colspan="4" id="totalAmountWords"></td>
+                </tr> -->
+            </tfoot>
+        </table>
+        <div class="footer">
+            <p>Authorized Signature</p>
+        </div>
+        <div class="button-container">
+            <button onclick="printInvoice()" class="button no-print">Print</button>
+            <button onclick="downloadPDF()" class="button no-print">Download PDF</button>
+        </div>
+    </div>
+
+    <script src="invoicejs.js"></script>
+</body>
+</html>

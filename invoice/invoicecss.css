@@ -1,0 +1,194 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    background-color: #f4f4f4;
+}
+
+.container {
+    max-width: 600px;
+    margin: 20px auto;
+    background: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Added box-shadow property */
+}
+
+h1, h2 {
+    text-align: center;
+}
+.header-left {
+    display: flex;
+    align-items: center;
+}
+
+#logo {
+    height: 100px;
+    width: 100px;
+    margin-right: 10px; /* Space between logo and company name */
+    border-radius: 30%;
+}
+
+#compName {
+    margin: 0; /* Remove default margin */
+    line-height: 60px; /* Adjust the line-height to increase the height */
+    font-size:2em; /* Adjust the font size */
+    padding: 5px 10px; /* Optional: Add padding for additional height and spacing */
+    text-shadow: 4px 4px 8px rgba(29, 18, 18, 0.5); /* Apply text shadow */
+}
+
+.header-right {
+    text-align: right;
+}
+
+.header-right p {
+    margin: 5px 0;
+}
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+label {
+    margin-bottom: 5px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="number"] {
+    padding: 5px;
+    margin-bottom: 10px;
+}
+.button-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.button {
+    padding: 10px 20px;
+    margin: 10px;
+    background-color: #5cb85c;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+}
+
+.button:hover {
+    background-color: #4cae4c;
+}
+
+
+button:hover {
+    background-color: #45a049;
+}
+
+.invoice {
+    margin-top: 50px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    max-width: 800px;
+    margin: auto;
+    background-color: #fff;
+}
+
+.hidden {
+    display: none;
+}
+
+.header, .biller-info {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.header .left, .biller-info .left {
+    flex: 1;
+}
+
+.header .right, .biller-info #invoiceItems .right {
+    flex: 1;
+    text-align: right;
+}
+
+header img {
+    max-width: 150px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+table, th, td {
+    border: 1px solid black;
+}
+
+th, td {
+    padding: 10px;
+    text-align: left;
+}
+
+tfoot td {
+    text-align: right;
+}
+
+.footer {
+    text-align: right;
+    margin-top: 20px;
+} 
+
+table thead tr th{
+  text-align: center;
+
+}
+table tbody tr td{
+    text-align: right;
+}
+
+
+
+
+@media (max-width: 768px) {
+    .header, .biller-info, .footer, .button-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .header .left, .header .right,
+    .biller-info .left, .biller-info .right {
+        width: 100%;
+        text-align: center;
+    }
+
+    .header .left img {
+        max-width: 100%;
+        height: auto;
+    }
+
+    table, th, td {
+        display: block;
+        width: 100%;
+    }
+
+    table thead {
+        display: none;
+    }
+
+    table tr {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 10px;
+    }
+
+    table td::before {
+        content: attr(data-label);
+        font-weight: bold;
+        display: block;
+        margin-bottom: 5px;
+    }
+}
